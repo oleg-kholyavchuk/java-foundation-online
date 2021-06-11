@@ -51,7 +51,7 @@ public class ExceptionPractice {
         Person manName = new Person(name, age);
 
         try {
-            System.out.println(manName.ageThrow());
+            manName.ageThrow();
         } catch (PersonException se) {
             se.printStackTrace();
         }

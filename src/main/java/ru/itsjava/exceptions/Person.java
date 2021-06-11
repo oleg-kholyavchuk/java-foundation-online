@@ -10,17 +10,15 @@ public class Person {
         this.age = age;
     }
 
-    public boolean ageThrow() {
+    public void ageThrow() {
 
         try {
-            if (age < 0) {
-                throw new RuntimeException("Возраст меньше 0");
-            } else if (age > 150) {
-                throw new RuntimeException("Возраст больше 150");
+            if (age < 0 || age > 150) {
+                throw new RuntimeException("Возраст, Error");
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("AgeNotValidException");
         }
-        throw new RuntimeException("AgeNotValidException");
     }
 }
