@@ -10,4 +10,9 @@ public class Book {
     private final String title;
     private final String author;
     private final int numberOfPages;
+
+    @Override
+    public String toString() {
+        return  " \n " + "Книги:  " + title + ", Автор:  " + author  + " Страницы " + numberOfPages +'}';
+    }
 }

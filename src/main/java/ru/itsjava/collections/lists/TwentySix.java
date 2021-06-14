@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -20,13 +21,11 @@ public class TwentySix {
         for (int i = 2; i < 7; i++) bookList.add(firstBook);
         for (int i = 6; i < 17; i++) bookList.add(null);
 
-
         bookList.add(firstBook);
         bookList.add(0, firstBook);
         bookList.add(1, null);
         bookList.add(7, seventhBook);
         bookList.add(twentiethBook);
-
 
         System.out.println(bookList);
         System.out.println(bookList.get(0) +
@@ -47,18 +46,11 @@ public class TwentySix {
         System.out.println("Новый лист");
         System.out.println(bookListEmptyTemp);
 
-        for (int i = 0; i < 20; i++) {
-            bookListEmptyTemp.clear();
-        }
+        bookListEmptyTemp.clear();
         System.out.println("-----------------");
         System.out.println(bookListEmptyTemp);
         System.out.println("-----------------");
 
-        bookList.remove(seventhBook);
-        bookList.remove(0);
-        System.out.println(bookList);
-        for (int i = 0; i < 20; i++) {
-            System.out.println("bookList.get(20) = " + bookList.get(i));
-        }
+        System.out.println("List: " + bookList.toString());
     }
 }
