@@ -87,7 +87,7 @@ public class TwentySix {
         System.out.println();
         System.out.println("Пропустить 3 первых элемента");
         for (int i = 0; i < 20; i++) {
-            if (i > 3) {
+            if (i > 2) {
                 System.out.print(bookList.get(i));
             }
         }
@@ -113,12 +113,15 @@ public class TwentySix {
         System.out.println();
         System.out.println();
         System.out.println("Возвращаем первую книгу, длина автора которого делится на 3");
-//        int bookTemp2 = 0;
-//        for (int i = 0; i < bookList.size(); i++) {
-//            if (bookList.get(i).getAuthor().equalsIgnoreCase(2) && bookTemp2 % 3) {
-//                System.out.print(bookList.get(i));
-//                break;
-//            }
+        int bookTemp2 = 0;
+        for (int i = 0; i < bookList.size(); i++) {
+            if (bookList.get(i).getAuthor().hashCode() % 3 == 0) {
+                System.out.print(bookList.get(i));
+                break;
+            }
+        }
+
+        System.out.println();
 
         Person person1 = new Person("Вася", 24, 'm');
         Person person2 = new Person("Петя", 29, 'm');
@@ -138,15 +141,20 @@ public class TwentySix {
         }
         System.out.println();
         System.out.println("Найти средний возраст женщин");
-        int temp = 0;
-        for (Person age : personList) {
-            if (age.getIsMale() == 'g') {
-                temp += age.getAge();
-                System.out.print("Женщины " + (temp / 3) + " ");
+        double tmpSumm = 0.0;
+        double tmpAge = 0.0;
+        for (Person tmpPers : personList) {
+            if (tmpPers.getIsMale() == 'g') {
+                tmpSumm += tmpPers.getAge();
+                ++tmpAge;
             }
         }
+        System.out.println(tmpSumm / tmpAge);
     }
 }
+
+
+
 
 
 
