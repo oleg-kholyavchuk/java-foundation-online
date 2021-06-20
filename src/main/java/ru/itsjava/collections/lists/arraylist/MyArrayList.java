@@ -1,9 +1,5 @@
 package ru.itsjava.collections.lists.arraylist;
 
-import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
-
 public class MyArrayList {
     private static final int DEFAULT_CAPACITY = 10;
     private int realSize;
@@ -87,11 +83,9 @@ public class MyArrayList {
     public void add(int index, Object element) {
         if (realSize == array.length) {
             Object[] resArray = new Object[array.length * 3 / 2 + 1];
-            //копирование массива
             System.arraycopy(array, 0, resArray, 0, array.length);
-            array[index] = index;
         }
-        array[realSize++] = element;
+        array[index] = element;
     }
 
     public Object remove(int index) {
