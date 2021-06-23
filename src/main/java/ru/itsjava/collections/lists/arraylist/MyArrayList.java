@@ -85,12 +85,12 @@ public class MyArrayList {
             Object[] resArray = new Object[array.length * 3 / 2 + 1];
             System.arraycopy(array, 0, resArray, 0, array.length);
         }
+        realSize++;
         array[index] = element;
     }
 
     public Object remove(int index) {
         checkIndex(index);
-
         Object resElement = array[index];
         if (array.length - 1 - index >= 0) {
             System.arraycopy(array, index + 1, array, index, array.length - 1 - index);
