@@ -56,62 +56,52 @@ public class MyLinkedList {
         return true;
     }
 
-//    public boolean remove(Object o) {
-//        if (o == null) {
-//            for (Node<E> x = first; x != null; x = x.next) {
-//                if (x.item == null) {
-//                    unlink(x);
-//                    return true;
-//                }
-//            }
-//        } else {
-//            for (Node<E> x = first; x != null; x = x.next) {
-//                if (o.equals(x.item)) {
-//                    unlink(x);
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
+    public boolean remove(Object o) {
+        if (head == null) return false;
+        if (head.getValue().equals(o)) {
+            head = head.getNext();
+            return true;
+        }
+        if (head.getNext() == null) return false;
 
+        Node curNode = head;
+        Node prevNode = head;
+
+        while ((curNode = curNode.getNext()) != null) {
+            if (curNode.getValue().equals(o)) {
+                break;
+            }
+            prevNode = prevNode.getNext();
+        }
+
+        if (curNode == null) return false;
+        prevNode.setNext(curNode.getNext());
+        curNode.setNext(null);
+        return true;
+    }
 
     public void clear() {
-
-//        Node e = this.head;
-//        while (e != head) {
-//            Node next = e.getNext();
-//            e.getValue() = null;
-//            e = null;
-//            e = next;
-//        }
-//        head.getNext() = head;
-//        size = 0;
-//        modCount++;
-//    }
-//        for (Node<> x = first; x != null; ) {
-//            Node<E> next = x.next;
-//            x.item = null;
-//            x.next = null;
-//            x.prev = null;
-//            x = next;
-//        }
-//        first = last = null;
-//        size = 0;
-//        modCount++;
+        head = null;
     }
 
     public Object get(int index) {
-        return null;
+        checkIndex(index);
+        Node item = head;
+        for (int i = 0; i < index; i++) {
+            item = item.getNext();
+        }
+        return item.getValue();
     }
 
-//    public Object set(int index, Object element) {
-//        checkElementIndex(index);
-//        Node<E> x = node(index);
-//        E oldVal = x.item;
-//        x.item = element;
-//        return oldVal;
-//    }
+    public Object set(int index, Object element) {
+        checkIndex(index);
+        Node item = head;
+        for (int i = 0; i < index; i++)
+            item = item.getNext();
+        Object value = item.getNext();
+        item.setValue(element);
+        return value;
+    }
 
 
     public void add(int index, Object element) {
@@ -119,49 +109,77 @@ public class MyLinkedList {
     }
 
     public Object remove(int index) {
-        return null;
+
+        checkIndex(index);
+        if (index == 0) {
+            Object resValue = head.getValue();
+            if (head.getNext() == null) {
+                head = null;
+            } else {
+                head = head.getNext();
+            }
+            return resValue;
+        }
+        Node curNode = head;
+        Node prevNode = head;
+        int count = 0;
+        while ((curNode = curNode.getNext()) != null) {
+            count++;
+            if (count == index) {
+                break;
+            }
+            prevNode = prevNode.getNext();
+        }
+        if (curNode == null) return null;
+        Object resValue = curNode.getValue();
+        if (curNode.getNext() == null) {
+            prevNode.setNext(null);
+
+        } else {
+            prevNode.setNext(curNode.getNext());
+            curNode.setNext(null);
+        }
+        return resValue;
     }
 
-//    public int indexOf(Object o) {
-//        int index = 0;
-//        if (o == null) {
-//            for (Node<E> x = first; x != null; x = x.next) {
-//                if (x.item == null)
-//                    return index;
-//                index++;
-//            }
-//        } else {
-//            for (Node<E> x = first; x != null; x = x.next) {
-//                if (o.equals(x.item))
-//                    return index;
-//                index++;
-//            }
-//        }
-//        return -1;
-//    }
+    public int lastIndexOf(Object o) {
 
-//    public int lastIndexOf(Object o) {
-//        int index = size;
-//        if (o == null) {
-//            for (Node<E> x = last; x != null; x = x.prev) {
-//                index--;
-//                if (x.item == null)
-//                    return index;
-//            }
-//        } else {
-//            for (Node<E> x = last; x != null; x = x.prev) {
-//                index--;
-//                if (o.equals(x.item))
-//                    return index;
-//            }
-//        }
-//        return -1;
-//    }
+        int index = size();
+        if (o == null) {
+            for (Node temp = head; temp != null; temp = temp.getNext()) {
+                index--;
+                if (temp.getValue() == null)
+                    return index;
+                index++;
+            }
+        } else {
+            for (Node temp = head; temp != null; temp = temp.getNext()) {
+                index--;
+                if (o.equals(temp.getValue()))
+                    return index;
+                index++;
+            }
+        }
+        return -1;
+    }
 
     @Override
     public String toString() {
         return "MyLinkedList{" +
                 "head=" + head +
                 '}';
+    }
+
+    private void checkIndex(int index) {
+        if (!isCorrectIndex(index)) {
+            throw new ArithmeticException("Некорректный индекс");
+        }
+    }
+
+    private boolean isCorrectIndex(int index) {
+        if ((index > -1) && (index < size())) {
+            return true;
+        }
+        return false;
     }
 }
