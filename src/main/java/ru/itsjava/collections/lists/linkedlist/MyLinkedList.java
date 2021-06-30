@@ -56,32 +56,47 @@ public class MyLinkedList {
         return true;
     }
 
-    public boolean remove(Object o) {
-        if (head == null) return false;
-        if (head.getValue().equals(o)) {
-            head = head.getNext();
-            return true;
+    public boolean remove(Object o) { // публичный метод возвращает значение буль. Параметор метода Object o
+        if (head == null)
+            return false; // сравнение переменной head класс на равенство с null. Если head равен null возвращаем false
+        if (head.getValue().equals(o)) { // возвращаем значение Object из head, и сравниваем его с объектом о. Если они равны выполняется условие
+            head = head.getNext(); // присваеваем переменной head следующие значение переменной head класса Node
+            return true; // и тогда возвращаем true
         }
-        if (head.getNext() == null) return false;
+        if (head.getNext() == null) return false; // если следующие значение head равно null возвращаем false
 
-        Node curNode = head;
-        Node prevNode = head;
+        Node curNode = head; // создаем переменную класса Node curNode, и приравниваем к ней значение head
+        Node prevNode = head; // создаем переменную класса Node prevNode, и приравниваем к ней значение head
 
-        while ((curNode = curNode.getNext()) != null) {
-            if (curNode.getValue().equals(o)) {
-                break;
+        while ((curNode = curNode.getNext()) != null) { // создаем цикл. Условие его выполнения, следующие значение curNode не должно быть равно null
+            if (curNode.getValue().equals(o)) { // в цикле идет сравнение curNode c Object o. Если они равны, выходим из цикла
+                break; // выход из цикла
             }
-            prevNode = prevNode.getNext();
+            prevNode = prevNode.getNext(); // присваиваем следующие значение prevNode
         }
-
-        if (curNode == null) return false;
-        prevNode.setNext(curNode.getNext());
-        curNode.setNext(null);
-        return true;
+        if (curNode == null)
+            return false; // сравнение curNode на равенство с null. Если условие выполнено, возвращаем false
+        prevNode.setNext(curNode.getNext()); // присваиваем prevNode следующие значение curNode
+        curNode.setNext(null); // присваиваем значение null curNode
+        return true; // возвращаем true
     }
 
     public void clear() {
-        head = null;
+        int size = 0;
+        Node head = this.head;
+        while (head != null) {
+            head = head.getNext();
+            size++;
+        }
+
+        Node prevNode = head;
+        Node curNode = head;
+        for (int i = 0; i < size - 1; i++) {
+            prevNode.setNext(null);
+            prevNode = curNode;
+            curNode = curNode.getNext();
+        }
+        size = 0;
     }
 
     public Object get(int index) {

@@ -81,12 +81,17 @@ public class MyArrayList {
     }
 
     public void add(int index, Object element) {
-        if (realSize == array.length) {
-            Object[] resArray = new Object[array.length * 3 / 2 + 1];
-            System.arraycopy(array, 0, resArray, 0, array.length);
+        if (realSize >= array.length) { // сравнение реального размера с массивом
+            realSize++; // увелечение массива на один
+            Object[] resArray = new Object[3 * 2 * realSize + 1];  // создание массива
+            System.arraycopy(array, 0, resArray, 0, index); // копирование элементов массива
+            System.arraycopy(array, index, resArray, index + 1, realSize - index); // копирование элементов массива
+            array = resArray; // присвоение массиву значение массива resArray
+            array[index] = element; // запись объекта в массив по индексу
         }
-        realSize++;
-        array[index] = element;
+        realSize++; // увелечение массива на один
+        System.arraycopy(array, index, array, index + 1, realSize - index); // копирование элементов массива
+        array[index] = element; // запись объекта в массив по индексу
     }
 
     public Object remove(int index) {
