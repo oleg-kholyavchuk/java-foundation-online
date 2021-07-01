@@ -3,6 +3,7 @@ package ru.itsjava.collections.lists.linkedlist;
 
 public class MyLinkedList {
     private Node head;
+    private int size;
 
     public int size() {
         int size = 0;
@@ -82,20 +83,22 @@ public class MyLinkedList {
     }
 
     public void clear() {
-        int size = 0;
-        Node head = this.head;
-        while (head != null) {
-            head = head.getNext();
-            size++;
-        }
+//        int size = 0;
+//        Node head = this.head;
+//        while (head != null) {
+//            head = head.getNext();
+//            size++;
+//        }
+
 
         Node prevNode = head;
         Node curNode = head;
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size() - 1; i++) {
             prevNode.setNext(null);
             prevNode = curNode;
             curNode = curNode.getNext();
         }
+        head = null;
         size = 0;
     }
 
