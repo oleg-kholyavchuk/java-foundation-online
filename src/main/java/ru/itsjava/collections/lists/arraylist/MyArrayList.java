@@ -39,23 +39,46 @@ public class MyArrayList {
         return true;
     }
 
+    private void fastRemove(int index) {
+        int numMoved = realSize - index - 1;
+        if (numMoved > 0)
+            System.arraycopy(array, index + 1, array, index,
+                    numMoved);
+        array[--realSize] = null; // clear to let GC do its work
+    }
+
     public boolean remove(Object o) {
-        int delIndex = -1;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != null && array[i].equals(o)) {
-                delIndex = i;
-                break;
-            }
-        }
-        if (array.length - 1 - delIndex >= 0) {
-            System.arraycopy(array, delIndex + 1, array, delIndex, array.length - 1 - delIndex);
-        }
-        if (delIndex == -1) {
-            return false;
+
+        if (o == null) {
+            for (int index = 0; index < realSize; index++)
+                if (array[index] == null) {
+                    fastRemove(index);
+                    return true;
+                }
         } else {
-            realSize--;
-            return true;
+            for (int index = 0; index < realSize; index++)
+                if (o.equals(array[index])) {
+                    fastRemove(index);
+                    return true;
+                }
         }
+        return false;
+//        int delIndex = -1;
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i] != null && array[i].equals(o)) {
+//                delIndex = i;
+//                break;
+//            }
+//        }
+//        if (array.length - 1 - delIndex >= 0) {
+//            System.arraycopy(array, delIndex + 1, array, delIndex, array.length - 1 - delIndex);
+//        }
+//        if (delIndex == -1) {
+//            return false;
+//        } else {
+//            realSize--;
+//            return true;
+//        }
     }
 
     public void clear() {

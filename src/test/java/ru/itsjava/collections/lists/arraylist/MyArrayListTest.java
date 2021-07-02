@@ -36,8 +36,10 @@ public class MyArrayListTest {
         listTest.add("2");
         assertEquals(1, listTest.lastIndexOf("2"));
         listTest.add("3");
+        listTest.add("3");
+        assertEquals(3, listTest.lastIndexOf("3"));
         listTest.add("4");
-        assertEquals(3, listTest.lastIndexOf("4"));
+        assertEquals(4, listTest.lastIndexOf("4"));
         assertEquals(-1, listTest.lastIndexOf("5"));
     }
 
@@ -50,11 +52,6 @@ public class MyArrayListTest {
         listTest.add("Пока4");
         assertEquals("MyArrayList{Пока1 Пока2 Пока3 Пока4 }", listTest.toString());
 
-    }
-
-    @Test
-    public void MyArrayListisCorrectIndex() {
-        assertTrue(3 > -1 && 3 < 5);
     }
 
     @Test
@@ -85,7 +82,6 @@ public class MyArrayListTest {
         listTest.add("9");
         listTest.add("10");
         assertEquals("5", listTest.remove(2));
-
     }
 
     @Test
@@ -93,10 +89,9 @@ public class MyArrayListTest {
         listTest.add("1");
         listTest.add("2");
         listTest.add("3");
-        listTest.add("4");
-        assertTrue(listTest.remove("1"));
+        assertTrue(listTest.remove("2"));
         assertFalse(listTest.remove("4"));
-        assertEquals(4, listTest.size());
+        assertEquals(2, listTest.size());
     }
 
     @Test
@@ -148,14 +143,5 @@ public class MyArrayListTest {
     @Test
     public void MyArrayListSize() {
         assertEquals(0, listTest.size());
-    }
-
-    @Test
-    public void MyArrayList() {
-        listTest.add("Пока1");
-        listTest.add("Пока2");
-        listTest.add("Пока3");
-        assertTrue(3 == listTest.size());
-        assertEquals("Пока3", listTest.get(2));
     }
 }
