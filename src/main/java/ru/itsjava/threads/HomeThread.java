@@ -25,6 +25,4 @@ public class HomeThread {
 
         System.out.println("end");
     }
-
-
 }
