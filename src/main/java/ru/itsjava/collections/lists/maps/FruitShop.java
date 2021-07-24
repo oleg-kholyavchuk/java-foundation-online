@@ -42,5 +42,7 @@ public class FruitShop {
         for (Man keyMan : men.keySet()){
             System.out.println(men.get(keyMan));
         }
+
+
     }
 }

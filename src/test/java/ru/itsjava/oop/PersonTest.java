@@ -1,6 +1,7 @@
 package ru.itsjava.oop;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Класс Person должен: ")
 public class PersonTest {
 
-    int age = 4;
+    int age;
     public static final String DEFAULT_NAME = "Oleg";
     public static final int DEFAULT_AGE = 30;
     public static final String NEW_NAME = "Masha";
@@ -36,14 +37,14 @@ public class PersonTest {
         assertEquals(NEW_AGE, actualMan.getAge());
     }
 
-    @Before
+    @BeforeEach
     public void setUp() { // почему то не выполнилась
-        age = 3 + 1;
+        age = 4 + 1;
     }
 
     @Test
     public void testGoodOne() {
-        int temp = 3 + 1;
+        int temp = 5;
         assertEquals(temp, age);
     }
 

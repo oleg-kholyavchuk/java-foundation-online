@@ -68,7 +68,7 @@ public class FruitShop {
             }
         }
 
-        Map<Man, Fruit> man2 = new HashMap<>();
+        Map men2 = new HashMap<>();
 //        Man sofi = new Man("Sofi");
 //        Man soni = new Man("Soni");
 //        Man julia = new Man("Julia");
@@ -76,13 +76,23 @@ public class FruitShop {
 //        Man linda = new Man("Linda");
 //        Man falin = new Man("Falin");
 
+        men2 = (HashMap) ((HashMap<Man, Fruit>) men).clone();
+        System.out.println(men2);
 
-        men.forEach(man2::put);
-        System.out.println(man2.size());
 
-        for (Man keyMan : man2.keySet()) {
-            System.out.println(keyMan + ": " + man2.get(keyMan));
-        }
+        men.forEach(men2::put);
+        System.out.println(men2.size());
+        System.out.println(men2);
+
+//        for (Man keyMan : man2.keySet()) {
+//            System.out.println(keyMan + ": " + man2.get(keyMan));
+//        }
+
+//        for (Fruit fruit : men.values()) {
+//            if (fruit.getTitle().equals()) {
+//                System.out.println("Fruit " + fruit);
+//            }
     }
 }
+
 
