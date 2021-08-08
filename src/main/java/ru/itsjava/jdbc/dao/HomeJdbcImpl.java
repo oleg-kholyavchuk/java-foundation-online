@@ -1,23 +1,32 @@
 package ru.itsjava.jdbc.dao;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.sql.*;
 
+@Data
+@AllArgsConstructor
 public class HomeJdbcImpl implements HomeDao {
     public static final String DB_URL = "jdbc:MySql://localhost:3306/schema_online?serverTimezone=UTC";
-    public static final String DB_LOGIN = "";
-    public static final String DB_PASSWORD = "";
-
+    public static final String DB_LOGIN = "root";
+    public static final String DB_PASSWORD = "My429sql!";
+    private String name;
 
     @Override
     public int getAgeByUserName(String name) {
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement("select age from schema_online.userss where name = ?")
         ) {
-            preparedStatement.setString(1, "Oleg");
+            preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                int age = resultSet.getInt(3);
             resultSet.next();
             return resultSet.getInt("age");
-        } catch (SQLException throwables) {
+
+        } catch (
+                SQLException throwables) {
             throwables.printStackTrace();
         }
         return -1;
