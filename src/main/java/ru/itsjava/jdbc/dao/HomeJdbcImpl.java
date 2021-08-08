@@ -9,8 +9,8 @@ import java.sql.*;
 @AllArgsConstructor
 public class HomeJdbcImpl implements HomeDao {
     public static final String DB_URL = "jdbc:MySql://localhost:3306/schema_online?serverTimezone=UTC";
-    public static final String DB_LOGIN = "root";
-    public static final String DB_PASSWORD = "My429sql!";
+    public static final String DB_LOGIN = "";
+    public static final String DB_PASSWORD = "";
     private String name;
 
     @Override
