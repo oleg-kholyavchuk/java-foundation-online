@@ -42,7 +42,7 @@ public class HomeJdbcImpl implements HomeDao {
             while (resultSet.next()) {
                 String messages = resultSet.getString(1);
                 String name = resultSet.getString(2);
-                return (messages + ": " + name);
+                return (messages + ": " + name + "  " + messages + ": " + name);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

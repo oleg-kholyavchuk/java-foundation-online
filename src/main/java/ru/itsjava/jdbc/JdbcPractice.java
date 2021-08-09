@@ -54,7 +54,7 @@ public class JdbcPractice {
 
 
         EmployerDao dao = new EmployerJdbcImpl();
-        System.out.println("dao.findAgeByName(\"Tanya\") = " + dao.findAgeByName(""));
+        System.out.println("dao.findAgeByName(\"Tanya\") = " + dao.findAgeByName("Tanya"));
 
         HomeDao homeDao = new HomeJdbcImpl(name);
         homeDao.getMessagesByUserName2();
